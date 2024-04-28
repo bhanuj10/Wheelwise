@@ -46,7 +46,7 @@ Contributions are welcome! Please follow these steps:
 
 ## 📧 Contact
 
-For any inquiries or suggestions, please contact us at [bhanuj10@github.com](mailto:bhanuj10@github.com).
+For any inquiries or suggestions, please contact us at <!--bhanuj10@github.com](mailto:bhanuj10@github.com).-->
 
 ---
 
