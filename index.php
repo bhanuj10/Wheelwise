@@ -38,10 +38,10 @@
 
         </div>
 
-        <div id="main">
+        <div id="main" class="">
             <div class="row mainopts container-fluid">
-                <div class="col menucol col1">Car Rental</div>
-                <div class="col menucol">Instant Cab</div>
+                <div class="col menucol col1" onclick="document.location.href='car_rental.php'">Car Rental</div>
+                <div class="col menucol" onclick="document.location.href='instant_cab.php'">Instant Cab</div>
             </div>
         
 
@@ -68,7 +68,9 @@
                 </div>
 
             </form>
+            <div class="container-fluid bg-secondary footercp ">
+                <span class="footercp1">Created by team <a href="team.php" class="teams">FIGHTERS</a> with care😇</span>
+            </div> 
         </div>
-                
     </body>
 </html>

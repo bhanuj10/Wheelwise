@@ -1,0 +1,11 @@
+database: cars 
+tables : users,city
+
+pages : index,signin,register,teams,location,profile
+
+index.php -> signin , teams, 
+signin -> register
+
+users -> user,pass,id,premium,phone,email,address
+
+city -> car_id,car_no,cab_y_n,booked,driver_phone,cost,
