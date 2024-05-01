@@ -10,7 +10,7 @@
         <script src="js/scripts.js"></script>
     </head>
 
-    <body>
+    <body >
         <div class="container-fluid bg-secondary">
 
             <div id="mySidenav" class="sidenav">
@@ -22,7 +22,7 @@
                 <a class="nav-link helpnav" href="#" >Help?</a>
             </div>
 
-            <nav class="navbar navbar-light " style="">
+            <nav class="navbar navbar-light ">
 
                 <span onclick="openNav()">
                     <svg class="bg-white svg-icon" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -31,18 +31,33 @@
                 </span>
 
                 <span class="navbar-brand" >Wheelwise</span>
+                <span onclick="window.location.href='signin.php'" class="btn signin">Sign in</span>
 
             </nav>
 
         </div>
 
-        <!-- Use any element to open the sidenav -->
-        
-
-        <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
         <div id="main">
-        
+            <div class="row mainopts container-fluid">
+                <div class="col menucol col1">Car Rental</div>
+                <div class="col menucol">Instant Cab</div>
+            </div>
         </div>
+        <form action="" >
+            <h1>Select a city ...</h1>
+            <div class="citydropdown">
+                <select class="form-select">
+                    <option value="PY">Puducherry</option>
+                    <option value="CU">Cuddalore</option>
+                    <option value="VI">Villupuram</option>
+                    <option value="KA">Karaikal</option>
+                </select>
+            </div><br>
+            <button type="submit"><i class="fa fa-search"></i></button>
+
+        </form>
+        
+        
         
     </body>
 </html>

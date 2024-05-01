@@ -1,15 +1,3 @@
-
-
-.navcenter{
-    position: relative;
-    left: 50%;
-    right: 50%;
-    height: 10%;
-}
-
-
-
-
 /* The side navigation menu */
 .sidenav {
     height: 100%; /* 100% Full-height */
@@ -51,11 +39,11 @@
 .svg-icon{
     border: 2px solid black;
     border-radius: 5px;
+    padding: 5px; /* Add padding to the SVG icon */
 }
 
 .navbar-brand{
     position:relative;
-    right:50%;
     color:white;
 }
 
@@ -64,3 +52,50 @@
     bottom: 10px; /* Adjust the distance from the bottom */
     width: 100%;
 }
+
+.signin{
+    width: 15vh;
+    border-radius: 20px;
+    background-color: darkgrey;
+    font-size: large;
+}
+
+.mainopts{
+    padding: 10vh 30vh 5vh 30vh;
+}
+
+.menucol{
+    height: 40vb;
+    background-color: #069eeb; 
+}
+
+.col1{
+    margin-right: 10vh ;
+}
+body{
+    background-color: bisque;
+}
+
+.citydropdown{
+    width: 30vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+form{
+    text-align: center;
+}
+
+
+
+
+form button {
+    float: left;
+    width: 10%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
