@@ -1,5 +1,5 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['username'] != "" && $_POST['password'] != "") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['username'] != "" && $_POST['password'] != "" && $_POST['phone'] !="" && $_POST['email']!="" && $_POST['address']!="") {
         $server = "localhost";
         $user = "root";
         $pass = "";
@@ -18,7 +18,13 @@
         
         $password = $_POST['password'];
         
-        function username(){  /// user filter in php inbuilt
+        $phone = $_POST['phone'];
+
+        $email = $_POST['email'];
+        
+        $address = $_POST['address'];
+
+        function username(){         /// user filter in php inbuilt
             return; /// test username
         }
         function password(){
@@ -26,21 +32,25 @@
         }
         
         unset($_POST['username']);
-        unset($_POST['password']);  
+        unset($_POST['password']); 
+        unset($_POST['phone']); 
+        unset($_POST['email']);  
+        unset($_POST['address']); 
 
         // Prepare SQL query with parameterized query to prevent SQL injection
-        $sql = "SELECT * FROM users WHERE user=? AND pass=? LIMIT 1;";
+        $sql = "INSERT INTO users(user,pass,phone,email,address) VALUES(?,?,?,?,?);";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $username,$password);
+        $stmt->bind_param("sssss", $username,$password,$phone,$email,$address);
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if ($result->num_rows==0) {
-            echo "Invalid username or password";
+        if ($result==TRUE) {
+            echo "Account created...<br>Will be redirected automatically";
+            sleep(5);
+            header('Location: signin.php');
         } 
         else {
-            $row = $result->fetch_assoc();
-            echo $row['column_name']; // Replace 'column_name' with actual column names
+            echo "Account not created ".$stmt->error;
         }
         
         $stmt->close();

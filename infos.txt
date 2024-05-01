@@ -6,6 +6,7 @@ pages : index,signin,register,teams,location,profile
 index.php -> signin , teams, 
 signin -> register
 
-users -> user,pass,id,premium,phone,email,address
+users -> user,pass,id,premium,phone,email,address 
+-> all varchar2 except id(auto increment constraint)
 
-city -> car_id,car_no,cab_y_n,booked,driver_phone,cost,
+city -> car_id,car_no,cab_y_n,booked,driver_phone,cost,book_period

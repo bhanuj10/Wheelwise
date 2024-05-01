@@ -35,6 +35,7 @@
 
         $stmt->close();
         $conn->close();
+        exit();
     } else {
         header('Location: index.php');
         exit(); // Exit after redirect
