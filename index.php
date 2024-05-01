@@ -5,9 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WheelWise - Car Rental</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/styles_home.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/scripts.js"></script>
+        <script src="js/scripts_home.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body >
@@ -30,7 +31,7 @@
                     </svg>
                 </span>
 
-                <span class="navbar-brand" >Wheelwise</span>
+                <span class="navbar-brand" ><a class="title" href="index.php" >Wheelwise</a></span>
                 <span onclick="window.location.href='signin.php'" class="btn signin">Sign in</span>
 
             </nav>
@@ -42,22 +43,32 @@
                 <div class="col menucol col1">Car Rental</div>
                 <div class="col menucol">Instant Cab</div>
             </div>
-        </div>
-        <form action="" >
-            <h1>Select a city ...</h1>
-            <div class="citydropdown">
-                <select class="form-select">
-                    <option value="PY">Puducherry</option>
-                    <option value="CU">Cuddalore</option>
-                    <option value="VI">Villupuram</option>
-                    <option value="KA">Karaikal</option>
-                </select>
-            </div><br>
-            <button type="submit"><i class="fa fa-search"></i></button>
+        
 
-        </form>
-        
-        
-        
+            <form action="location.php" method="GET" class="f1">
+                <p class="content1">See how many vehicles are available in your city...</p>
+
+                <div class="citysearch">
+
+                    <span class="citydrop">
+                        <select class="form-select" name="city">
+                            <option value="PY">Puducherry</option>
+                            <option value="CU">Cuddalore</option>
+                            <option value="VI">Villupuram</option>
+                            <option value="KA">Karaikal</option>
+                        </select>
+                    </span>
+
+                    <span>
+                        <button type="submit" class="search">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+
+                </div>
+
+            </form>
+        </div>
+                
     </body>
 </html>
