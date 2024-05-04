@@ -36,9 +36,13 @@
             $stmt->execute();
             $result = $stmt->get_result();
 
+            function cookiesetter(){
+
+            }
+
             if ($result->num_rows==0) {
 
-                echo "alert(Invalid username or password)";
+                echo "alert('Invalid username or password')";
                 header("location: signin.php");
             } 
             else {
@@ -86,7 +90,7 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" maxlength="16" minlength="8" placeholder="Enter the password" required>
                 </div>
-                <span class="">
+                <span class="form-group">
                     <button type="submit">Sign In</button>
                 </span>
                 

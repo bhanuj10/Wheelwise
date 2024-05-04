@@ -1,76 +1,70 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        if(isset($_POST['firstname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['address'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $server = "localhost";
+        $user = "root";
+        $pass = "";
+        $db = "cars";
 
-            $server = "localhost";
-            $user = "root";
-            $pass = "";
-            $db = "cars";
+        $conn = new mysqli($server, $user, $pass, $db);
+        if ($conn->connect_error) {
+            die("Connection error: " . $conn->connect_error);
+        }
 
-            try {
-                $conn = new mysqli($server, $user, $pass, $db);
-            } catch (Exception $e) {
-                die("Connection error -> " . $e->getMessage());
-            }
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $address = $_POST['address'];
 
-            // Sanitize input
-            $firstname = $_POST['firstname'];
+        $sql_check = "SELECT * FROM users WHERE user=? OR email=?";
+        $stmt_check = $conn->prepare($sql_check);
+        $stmt_check->bind_param("ss", $username, $email);
+        $stmt_check->execute();
+        $result_check = $stmt_check->get_result();
 
-            $lastname = $_POST['lastname'];
-
-            $username = $_POST['username'];
-            $username = strip_tags($username);
-            $username = stripslashes($username);
-            
-            $password = $_POST['password'];
-            
-            $phone = $_POST['phone'];
-
-            $email = $_POST['email'];
-            
-            $address = $_POST['address'];
-
-            function username(){         /// user filter in php inbuilt
-                return; /// test username
-            }
-            function password(){
-                return; /// password test
-            }
-            unset($_POST['firstname']);
-            unset($_POST['lastname']);
-            unset($_POST['username']);
-            unset($_POST['password']); 
-            unset($_POST['phone']); 
-            unset($_POST['email']);  
-            unset($_POST['address']); 
-
-            // Prepare SQL query with parameterized query to prevent SQL injection
-            $sql = "INSERT INTO users(firstname,lastname,user,pass,phone,email,address) VALUES(?,?,?,?,?,?,?);";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssssss",$firstname,$lastname,$username,$password,$phone,$email,$address);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result==TRUE) {
-                echo "Account created...<br>Will be redirected automatically";
-                sleep(5);
-                header('Location: signin.php');
-            } 
-            else {
-                echo "Account not created ".$stmt->error;
-            }
-            
-            $stmt->close();
+        if ($result_check->num_rows > 0) {
+            $stmt_check->close();
             $conn->close();
+            echo "<script>alert('Email or username already exists')</script>";
+            echo '<script>
+                setTimeout(function() {
+                    window.location.href = "register.php";
+                }, 500); // 2000 milliseconds = 2 seconds
+              </script>';
             exit();
         }
 
-        else {
-            header('Location: index.php');
-            exit(); // Exit after redirect
+        $stmt_check->close();
+
+        $sql_insert = "INSERT INTO users(fn, ln, user, pass, phone, email, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $stmt_insert = $conn->prepare($sql_insert);
+        $stmt_insert->bind_param("sssssss", $firstname, $lastname, $username, $password, $phone, $email, $address);
+        $result_insert = $stmt_insert->execute();
+        $stmt_insert->close();
+        $conn->close();
+
+        if ($result_insert) {
+            echo "<script>alert('Registered successfully.  Redirecting...')</script>";
+            echo '<script>
+                setTimeout(function() {
+                    window.location.href = "signin.php";
+                }, 500); // 2000 milliseconds = 2 seconds
+              </script>';
+        } else {
+            echo "<script>alert('Invalid request...')</script>";
+            echo '<script>
+                setTimeout(function() {
+                    window.location.href = "signin.php";
+                }, 500); // 2000 milliseconds = 2 seconds
+              </script>';
         }
+        exit();
     }
 ?>
+
+
 
 <html lang="en">
 <head>
