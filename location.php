@@ -1,5 +1,5 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "GET" && $_GET['city'] != "") {
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['city'])) {
         $server = "localhost";
         $user = "root";
         $pass = "";
