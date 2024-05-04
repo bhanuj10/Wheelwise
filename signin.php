@@ -1,66 +1,62 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        if(isset($_POST['username']) && isset($_POST['password'])) {
-            $server = "localhost";
-            $user = "root";
-            $pass = "";
-            $db = "cars";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $server = "localhost";
+        $user = "root";
+        $pass = "";
+        $db = "cars";
 
-            try {
-                $conn = new mysqli($server, $user, $pass, $db);
-            } catch (Exception $e) {
-                die("Connection error -> " . $e->getMessage());
-            }
-
-            // Sanitize input
-            $username = $_POST['username'];
-            $username = strip_tags($username);
-            $username = stripslashes($username);
-            
-            $password = $_POST['password'];
-            
-            function username(){  /// user filter in php inbuilt
-                return; /// test username
-            }
-            function password(){
-                return; /// password test
-            }
-            
-            unset($_POST['username']);
-            unset($_POST['password']);  
-
-            // Prepare SQL query with parameterized query to prevent SQL injection
-            $sql = "SELECT * FROM users WHERE user=? AND pass=? LIMIT 1;";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ss", $username,$password);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            function cookiesetter(){
-
-            }
-
-            if ($result->num_rows==0) {
-
-                echo "alert('Invalid username or password')";
-                header("location: signin.php");
-            } 
-            else {
-                $row = $result->fetch_assoc();
-                echo $row['id']; // Replace 'column_name' with actual column names
-            }
-            header('Location: index.php');
-            $stmt->close();
-            $conn->close();
-            exit();
+        $conn = new mysqli($server, $user, $pass, $db);
+        if ($conn->connect_error) {
+            die("Connection error: " . $conn->connect_error);
         }
 
-        else {
-            header('Location: signin.php');
-            exit(); // Exit after redirect
+        $username = $_POST['username'];        
+        $password = $_POST['password'];
+        
+        $sql = "SELECT * FROM users WHERE user=? AND pass=? LIMIT 1;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $username, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        
+
+        if (!$result || $result->num_rows == 0) {
+            echo '<script>
+                alert("Invalid username or password");
+                setTimeout(function() {
+                    window.location.href = "signin.php";
+                }, 500);
+                </script>';
+            
+        } else {
+            
+            $v1 = base64_encode(str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT));
+            $v2 = base64_encode(time());
+            $v3 = time();
+
+            $value = base64_encode($v1 . $v2 . $v3);
+
+            $sql_insert = "INSERT INTO cookie_table VALUES(?,?,?)";
+            $stmt_insert = $conn->prepare($sql_insert);
+            $stmt_insert->bind_param("sss",$result->fetch_assoc()['id'],$value,$v3);
+            $result_insert = $stmt_insert->execute();
+
+            setcookie("phpuserid", $value, $v3 + 86000, '/');
+            echo '<script>
+                alert("Login Successful!");
+                setTimeout(function() {
+                    window.location.href = "index.php?features=true";
+                }, 500);
+                </script>';
+            
         }
+        $stmt->close();
+        $conn->close();
+        exit();
     }
 ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">

@@ -31,7 +31,7 @@
             echo '<script>
                 setTimeout(function() {
                     window.location.href = "register.php";
-                }, 500); // 2000 milliseconds = 2 seconds
+                }, 500);
               </script>';
             exit();
         }
@@ -50,14 +50,14 @@
             echo '<script>
                 setTimeout(function() {
                     window.location.href = "signin.php";
-                }, 500); // 2000 milliseconds = 2 seconds
+                }, 500); 
               </script>';
         } else {
             echo "<script>alert('Invalid request...')</script>";
             echo '<script>
                 setTimeout(function() {
                     window.location.href = "signin.php";
-                }, 500); // 2000 milliseconds = 2 seconds
+                }, 500); 
               </script>';
         }
         exit();
