@@ -4,10 +4,10 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div></div>
-        <a href="#">Home</a>
-        <a class="nav-link" id="logactive1" style="visibility: hidden;">Profile</a>
+        <a href="index.php">Home</a>
+        <a class="nav-link" id="profile" style="visibility: hidden;">Profile</a>
         <script src="includes/sidenav_scripts.js"></script>
-        <a class="nav-link" id="logactive2" href="#" style="visibility: hidden;" >Logout</a>
+        <a class="nav-link" id="logout" href="#" style="visibility: hidden;" >Logout</a>
         <a class="nav-link helpnav" href="#" >Help?</a>
     </div>
 
@@ -20,7 +20,7 @@
     </span>
 
     <span class="navbar-brand" ><a class="title" href="index.php" >Wheelwise</a></span>
-    <span onclick="window.location.href='signin.php'" class="btn signin">Sign in</span>
+    <span id="signin" onclick="window.location.href='signin.php'" style="visibility: hidden;" class="btn signin" onload="signin()">Sign in</span>
 
     </nav>
 </div>

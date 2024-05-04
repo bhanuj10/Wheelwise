@@ -94,15 +94,15 @@
             <form action="register.php" method="POST">
                 <div class="form-group">
                     <label for="firstname">First Name</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required>
+                    <input type="text" id="firstname" name="firstname" minlength="4" maxlength="25" placeholder="Enter your first name" required>
                 </div>
                 <div class="form-group">
                     <label for="lastname">Last Name (Optional)</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Enter your last name">
+                    <input type="text" id="lastname" name="lastname" maxlength="25" placeholder="Enter your last name">
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                    <input type="text" id="username" name="username" minlength="8" maxlength="16" placeholder="Choose a username" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
