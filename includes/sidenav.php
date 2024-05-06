@@ -20,7 +20,8 @@
     </span>
 
     <span class="navbar-brand" ><a class="title" href="index.php" >Wheelwise</a></span>
-    <span id="signin" onclick="window.location.href='signin.php'" style="visibility: hidden;" class="btn signin" onload="signin()">Sign in</span>
+    <span id="signin" onclick="window.location.href='signin.php'" >Sign in</span>
 
     </nav>
 </div>
+<!--style='visibility:<?php if(isset($_COOKIE["phpuserid"])||$_SERVER["PHP_SELF"]!="index.php"){echo "hidden";}else{echo "visible";} ?>' class="btn signin" onload="signin()"-->

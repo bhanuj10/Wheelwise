@@ -72,7 +72,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wheelwise - Signin</title>
     <link rel="icon" href="images/favicon.png" type="image/png">
-
+    <link rel="stylesheet" href="css/styles_register.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="css/styles_register.css">-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -81,7 +81,6 @@
 </head>
 <body>
     <?php include 'includes/sidenav.php'; ?>
-    <link rel="stylesheet" href="css/styles_register.css">
     <div class="container main">
         <div class="card">
             <h1>Register</h1>

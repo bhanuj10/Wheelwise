@@ -39,7 +39,7 @@
 
             $sql_insert = "INSERT INTO cookie_table VALUES(?,?,?)";
             $stmt_insert = $conn->prepare($sql_insert);
-            $stmt_insert->bind_param("sss",$result->fetch_assoc()['id'],$value,$v3);
+            $stmt_insert->bind_param("ssi",$result->fetch_assoc()['id'],$value,$v3);
             $result_insert = $stmt_insert->execute();
 
             setcookie("phpuserid", $value, $v3 + 86000, '/');
@@ -63,7 +63,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wheelwise - Signin</title>
     <link rel="icon" href="images/favicon.png" type="image/png">
-
+    <link rel="stylesheet" href="css/styles_signin.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="css/styles_signin.css">-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -72,7 +72,6 @@
 </head>
 <body>
     <?php include 'includes/sidenav.php'; ?>
-    <link rel="stylesheet" href="css/styles_signin.css">
     
     <div class="container main">
         <div class="card">
