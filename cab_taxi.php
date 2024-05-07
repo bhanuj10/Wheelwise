@@ -42,7 +42,7 @@
     </style>
 </head>
 <body>
-    <?php include 'includes/sidenav.php'; ?>
+    <?php include 'includes/sidenav2.php'; ?>
     <div class="container-fluid">
         <div class="container">
         <h1>CAB FOR RIDE</h1><br>

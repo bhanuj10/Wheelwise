@@ -22,11 +22,11 @@
 
         <div id="main" class="container-fluid">
             <div class="row mainopts container-fluid">
-                <div class="col menucol col1 card" onclick="document.location.href='car_rental.php'">
+                <div class="col menucol col1 card" onclick="document.location.href='signin.php'">
                     <img class="card-img-top" src="images/Audi.jpg" alt="Car rental" />
                     <div class="card-body" >CAR RENTAL</div>
                 </div>
-                <div class="col menucol col1 card" onclick="document.location.href='cab_taxi.php'">
+                <div class="col menucol col1 card" onclick="document.location.href='signin.php'">
                     <img class="card-img-top" src="images/taxi.jpg" alt="Taxi / Cab" />
                     <div class="card-body" >CALL A CAB</div>
                 </div>

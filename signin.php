@@ -46,7 +46,7 @@
             echo '<script>
                 alert("Login Successful!");
                 setTimeout(function() {
-                    window.location.href = "index.php?features=true";
+                    window.location.href = "index2.php?features=true";
                 }, 500);
                 </script>';
             

@@ -35,17 +35,14 @@
             font-weight: 500;
             text-align: center;
         }
-        h1{
-            text-align: center;
-        }
+
     </style>
 </head>
 <body>
     <?php include 'includes/sidenav2.php'; ?>
     <div class="container-fluid">
         <div class="container">
-            <h1>CAR RENTAL</h1><br>
-        <?php include 'includes/rental.php' ?>       
+        <?php include 'includes/all_location.php' ?>       
 
         </div>
         
