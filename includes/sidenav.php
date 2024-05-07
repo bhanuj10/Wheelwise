@@ -3,11 +3,12 @@
 <div class="container-fluid bg-secondary">
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <script src="includes/sidenav_scripts.js"></script>
         <div></div>
         <a href="index.php">Home</a>
-        <a class="nav-link" id="profile" style="visibility: style='visibility:<?php if(isset($_COOKIE["phpuserid"])||$_SERVER["PHP_SELF"]!="index.php"){echo "hidden";}else{echo "visible";} ?>';">Profile</a>
-        <script src="includes/sidenav_scripts.js"></script>
-        <a class="nav-link" id="logout" href="includes/logout.php" style="visibility: style='visibility:<?php if(isset($_COOKIE["phpuserid"])||$_SERVER["PHP_SELF"]!="index.php"){echo "hidden";}else{echo "visible";} ?>';" >Logout</a>
+        <a class="nav-link" id="profile">Profile</a>
+        
+        <a class="nav-link" id="logout" href="includes/logout.php" >Logout</a>
         <a class="nav-link helpnav" href="help_feedback.php" >Help?</a>
     </div>
 
@@ -20,7 +21,7 @@
     </span>
 
     <span class="navbar-brand" ><a class="title" href="index.php" >Wheelwise</a></span>
-    <span id="signin" onclick="window.location.href='signin.php'" style='visibility:<?php if(isset($_COOKIE["phpuserid"])||$_SERVER["PHP_SELF"]!="index.php"){echo "hidden";}else{echo "visible";} ?>'>Sign in</span>
+    <span id="signin" onclick="window.location.href='signin.php'" style='visibility:<?php if(isset($_COOKIE["phpuserid"])||$_SERVER["PHP_SELF"]!="/Wheelwise/index.php"){echo "hidden";}else{echo "visible";} ?>' class="btn signin">Sign in</span>
 
     </nav>
 </div>

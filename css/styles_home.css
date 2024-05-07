@@ -93,3 +93,7 @@ body{
     margin: 10px;
     background-color:lightsteelblue;
 }
+
+#signin{
+    visibility: visible;
+}

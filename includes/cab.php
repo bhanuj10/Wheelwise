@@ -14,27 +14,10 @@
         }
 
         // Sanitize input
-        $a = ['PY','CU','KA','VI'];
-
-        if(isset($_GET['city'])&&(in_array($_GET['city'] ,$a))){
-            $location = $_GET['city'];
-            $location = strip_tags($location);
-            $location = stripslashes($location);
-            unset($_GET['city']);
-            
-            // Prepare SQL query with parameterized query to prevent SQL injection
-            $sql = "SELECT * FROM city WHERE place = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $location);
-            
-        }
-
-        else{
-            $sql = "SELECT * FROM city";            
-            $stmt = $conn->prepare($sql);
-            
-        }
         
+        $sql = "SELECT * FROM city WHERE iscab = 1";
+        $stmt = $conn->prepare($sql);
+               
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -44,10 +27,7 @@
                 if (!$row['booked']){
                     $booked="Not Booked Yet";
                 }
-                $iscab = "Only Rental";
-                if (!$row['iscab']){
-                    $iscab="CAB";
-                }
+                $iscab = "CAB";
                 echo "<div class='car row' style='background-color: lightgrey;align-items: center;'>
                         <span class='col image' style='padding: 15px;text-align:center;'><img src='images/".$row['car_image'].".jpg' alt='pic' style='max-width:250px;max-height:180px;' /></span>
                         <span class='col coltext'>".$row['car_model']."</span>

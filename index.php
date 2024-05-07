@@ -26,7 +26,7 @@
                     <img class="card-img-top" src="images/Audi.jpg" alt="Car rental" />
                     <div class="card-body" >CAR RENTAL</div>
                 </div>
-                <div class="col menucol col1 card" onclick="document.location.href='instant_cab.php'">
+                <div class="col menucol col1 card" onclick="document.location.href='cab_taxi.php'">
                     <img class="card-img-top" src="images/taxi.jpg" alt="Taxi / Cab" />
                     <div class="card-body" >CALL A CAB</div>
                 </div>
@@ -57,7 +57,7 @@
 
             </form>
             <div class="container-fluid bg-secondary footercp ">
-                <span class="footercp1">Created by team <a href="team.php" class="teams">FIGHTERS</a> with care😇</span>
+                <span class="footercp1">Created by team <a href="teams_page/teams.php" class="teams">FIGHTERS</a> with care😇</span>
             </div> 
         </div>
     </body>
