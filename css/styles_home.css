@@ -1,15 +1,17 @@
 
 .mainopts{
-    padding: 10vh 30vh 5vh 30vh;
+    padding: 10vh 30vh;
+    display: flex;
+    justify-content: space-between; 
 }
 
 .menucol{
-    height: 40vb;
-    background-color: #72bde2; 
+    
+    background-color: #9ed9f7; 
 }
 
 .col1{
-    margin-right: 10vh ;
+    margin: 0 20px;
 }
 body{
     background-color: bisque;
@@ -88,6 +90,8 @@ body{
 }
 
 .card-body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 900;
     font-size: larger;
     justify-content: center;
     margin: 10px;
