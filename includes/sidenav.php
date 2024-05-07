@@ -8,7 +8,7 @@
         <a class="nav-link" id="profile" style="visibility: hidden;">Profile</a>
         <script src="includes/sidenav_scripts.js"></script>
         <a class="nav-link" id="logout" href="#" style="visibility: hidden;" >Logout</a>
-        <a class="nav-link helpnav" href="#" >Help?</a>
+        <a class="nav-link helpnav" href="help_feedback.php" >Help?</a>
     </div>
 
     <nav class="navbar navbar-light ">

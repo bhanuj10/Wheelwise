@@ -1,3 +1,5 @@
+
+
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['city'])) {
         $server = "localhost";
@@ -27,18 +29,24 @@
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                
-                if ($row['iscab']){
-                    echo "<div class='row card'>
-                    <span>".$row['car_model']."</span>
-                    <span>".$row['car_no']."</span>
-                    <span>".$row['booked']."</span>
-                    </div>";
+                $booked = "Booked";
+                if (!$row['booked']){
+                    $booked="Not Booked Yet";
                 }
-                else{
-                    echo "";
-                }
-
+                echo "<div class='car row' style='background-color: lightgrey;align-items: center;'>
+                        <span class='col image' style='padding: 15px;text-align:center;'><img src='images/".$row['car_image'].".jpg' alt='pic' style='max-width:250px;max-height:180px;' /></span>
+                        <span class='col coltext'>".$row['car_model']."</span>
+                        <span class='col coltext'>".$row['car_no']."</span>
+                        <span class='col coltext'>".$booked."</span>
+                        <span class='col coltext'>COST : ".$row['cost']."</span>                
+                    </div><br>";
+                /*echo "<div class='card'>
+                <span>".$row['car_model']."</span>
+                <span>".$row['car_no']."</span>
+                <span>".$row['booked']."</span>
+                <span>".$row['cost']."</span>
+                <span>".$row['iscab']."</span>
+                </div><br>";*/
             }
         } else {
             echo "No cars available :(";

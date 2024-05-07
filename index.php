@@ -20,10 +20,16 @@
         <?php include 'includes/sidenav.php'; ?>
         <link rel="stylesheet" href="css/styles_home.css">
 
-        <div id="main" class="">
+        <div id="main" class="container-fluid">
             <div class="row mainopts container-fluid">
-                <div class="col menucol col1 card" onclick="document.location.href='car_rental.php'">Car Rental</div>
-                <div class="col menucol card" onclick="document.location.href='instant_cab.php'">Instant Cab</div>
+                <div class="col menucol col1 card" onclick="document.location.href='car_rental.php'">
+                    <img class="card-img-top" src="images/Audi.jpg" alt="Car rental" />
+                    <div class="card-body" >CAR RENTAL</div>
+                </div>
+                <div class="col menucol col1 card" onclick="document.location.href='instant_cab.php'">
+                    <img class="card-img-top" src="images/taxi.jpg" alt="Taxi / Cab" />
+                    <div class="card-body" >CALL A CAB</div>
+                </div>
             </div>
         
 
