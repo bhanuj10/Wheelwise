@@ -77,6 +77,7 @@
     </style>
 </head>
 <body>
+    <?php include 'includes/sidenav2.php'; ?>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 profile">
@@ -87,7 +88,7 @@
                             <div class="form-group" id="profilePicContainer">
                                 <label for="profilePic">Profile Picture</label>
                                 <img id="profilePic" src="teams_page/Bhan.jpg" alt="Profile Picture">
-                                <input type="file" class="form-control-file" id="profilePicInput" accept="image/*" onchange="displayProfilePic(event)">
+                                <input type="file" class="form-control-file" id="profilePicInput" accept="image/*" onchange="displayProfilePic(event)" disabled>
                             </div>
                         </div>
                         <?php include 'includes/profile.php'; ?>
