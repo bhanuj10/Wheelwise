@@ -27,12 +27,11 @@
         if ($result_check->num_rows > 0) {
             $stmt_check->close();
             $conn->close();
-            echo "<script>alert('Email or username already exists')</script>";
-            echo '<script>
+            echo "<script>alert('Email or username already exists');
                 setTimeout(function() {
-                    window.location.href = "register.php";
+                    window.location.href = 'register.php';
                 }, 500);
-              </script>';
+              </script>";
             exit();
         }
 
@@ -46,19 +45,17 @@
         $conn->close();
 
         if ($result_insert) {
-            echo "<script>alert('Registered successfully.  Redirecting...')</script>";
-            echo '<script>
+            echo "<script>alert('Registered successfully.  Redirecting...')
                 setTimeout(function() {
-                    window.location.href = "signin.php";
+                    window.location.href = 'signin.php';
                 }, 500); 
-              </script>';
+              </script>";
         } else {
-            echo "<script>alert('Invalid request...')</script>";
-            echo '<script>
+            echo "<script>alert('Invalid request...')
                 setTimeout(function() {
-                    window.location.href = "signin.php";
+                    window.location.href = 'signin.php';
                 }, 500); 
-              </script>';
+              </script>";
         }
         exit();
     }

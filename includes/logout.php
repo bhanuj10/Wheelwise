@@ -20,8 +20,14 @@
     
     unset($_COOKIE['phpuserid']);
     session_unset();
-    echo "<script>alert('Logging out...')";
-    header('location:../index.php');
+    
+    echo '<script>
+    alert("Logging out...");
+    setTimeout(function() {
+        window.location.href = "index.php";
+    }, 500);
+    </script>';
+
     
     exit();
 ?>
