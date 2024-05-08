@@ -38,6 +38,10 @@
         h1{
             text-align: center;
         }
+        span{
+            font-size: larger;
+            font-weight: bolder;
+        }
 
     </style>
 </head>

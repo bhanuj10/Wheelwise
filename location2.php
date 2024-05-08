@@ -35,6 +35,10 @@
             font-weight: 500;
             text-align: center;
         }
+        span{
+            font-size: larger;
+            font-weight: bolder;
+        }
 
     </style>
 </head>
@@ -42,7 +46,7 @@
     <?php include 'includes/sidenav2.php'; ?>
     <div class="container-fluid">
         <div class="container">
-        <?php include 'includes/all_location.php' ?>       
+        <?php include 'includes/all_location2.php' ?>       
 
         </div>
         

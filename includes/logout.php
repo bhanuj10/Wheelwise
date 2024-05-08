@@ -24,7 +24,7 @@
     echo '<script>
     alert("Logging out...");
     setTimeout(function() {
-        window.location.href = "index.php";
+        window.location.href = "../index.php";
     }, 500);
     </script>';
 

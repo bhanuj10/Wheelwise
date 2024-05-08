@@ -51,7 +51,7 @@
                 echo "<div class='car row' style='background-color: lightgrey;align-items: center;'>
                         <span class='col image' style='padding: 15px;text-align:center;'><img src='images/".$row['car_image'].".jpg' alt='pic' style='max-width:250px;max-height:180px;' /></span>
                         <span class='col coltext'>".$row['car_model']."</span>
-                        
+                        <span class='col coltext'>".$row['car_no']."</span>
                         <span class='col coltext'>".$booked."</span>
                         <span class='col coltext'>".$iscab."</span>
                         <span class='col coltext'>COST : ".$row['cost']."</span>                

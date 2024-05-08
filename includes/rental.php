@@ -34,7 +34,7 @@
                         <span class='col coltext'>".$row['car_no']."</span>
                         <span class='col coltext'>".$booked."</span>
                         <span class='col coltext'>".$iscab."</span>
-                        <span class='col coltext'>COST : ".$row['cost']."</span>                
+                        <span class='col coltext' style='color:green;'>COST : ".$row['cost']."</span>                
                     </div><br>";
                 /*echo "<div class='card'>
                 <span>".$row['car_model']."</span>
