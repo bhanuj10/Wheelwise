@@ -34,7 +34,14 @@
                         <span class='col coltext'>".$row['car_no']."</span>
                         <span class='col coltext'>".$booked."</span>
                         <span class='col coltext'>".$iscab."</span>
-                        <span class='col coltext' style='color:green;'>COST : ".$row['cost']."</span>                
+                        <span class='col coltext' style='color:green;'>COST : ".$row['cost']."</span>";
+                if(!($row['booked'])){
+                    echo "<span class='col coltext btn' onclick='".'alert("Car Booked")'."'><h4>Click to Book</h4></span>";
+                }
+                else{
+                    echo "<span class='col coltext btn' onclick='".'alert("Car Unavailable right now")'."'><h4>Sorry already booked</h4></span>";
+                }
+                echo"             
                     </div><br>";
                 /*echo "<div class='card'>
                 <span>".$row['car_model']."</span>

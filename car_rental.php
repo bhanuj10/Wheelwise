@@ -42,6 +42,14 @@
             font-size: larger;
             font-weight: bolder;
         }
+        .btn{
+            background-color: grey;
+            margin-right: 10px;
+
+        }
+        .btn:hover{
+            background-color: white;
+        }
     </style>
 </head>
 <body>

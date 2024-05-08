@@ -32,7 +32,7 @@
                 <img src="sam.jpg" alt="Team Member 2">
                 <h2>Samuel Immanuel</h2>
                 <p>Position: Designer and Developer</p>
-                <p>Description:  </p>
+                <p>Description: Creative ideas and strategies </p>
             </section>
             <section class="team-member">
                 <img src="Sdh.jpg" alt="Team Member 4">
