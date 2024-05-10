@@ -20,13 +20,16 @@
                
         $stmt->execute();
         $result = $stmt->get_result();
-
+        $row1 = $result->fetch_assoc();
+        
         $sql2 = "SELECT id FROM cookie_table WHERE value=?";
         $stmt2 = $conn->prepare($sql2);
         $stmt2->bind_param("s",$_COOKIE['phpuserid']);
         $stmt2->execute();
         $result2 = $stmt2->get_result();
-        $row2 = $result->fetch_assoc();
+        $row2 = $result2->fetch_assoc();
+
+        
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -46,7 +49,7 @@
                         <span class='col coltext' style='color:green;'>COST : ".$row['cost']."</span>";
                 if($row['booked_user']){
                     if($row['booked_user']==$row2['id']){
-                        echo "<span class='col coltext btn' id='unbook' value=".$row['car_id']." onclick='".''."'><h4 style='width:180px;'>You Booked</h4></span>";
+                        echo "<span class='col coltext btn' id='unbook' value=".$row['car_id']." onclick='".'unbook('.$row['car_id'].")"."'><h4 style='width:180px;'>You Booked</h4></span>";
                     }
                     else{
                         echo "<span class='col coltext btn' onclick='".'alert("Car unavailable right now")'."'><h4 style='width:180px;'>Car Unavailable</h4></span>";
@@ -68,63 +71,72 @@
         } else {
             echo "No cars available :(";
         }
-
+        
         $stmt->close();
         $conn->close();
         exit();
-    } else {
-        header('Location: index.php');
-        exit(); // Exit after redirect
     }
 ?>
 
 <?php
-    if($_SERVER['REQUEST_POST']=='POST'){
-        $server = "localhost";
-        $user = "root";
-        $pass = "";
-        $db = "cars";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $server = "localhost";
+    $user = "root";
+    $pass = "";
+    $db = "cars";
 
-        try {
-            $conn = new mysqli($server, $user, $pass, $db);
-        } catch (Exception $e) {
-            die("Connection error -> " . $e->getMessage());
-        }
+    try {
+        $conn = new mysqli($server, $user, $pass, $db);
+    } catch (Exception $e) {
+        die("Connection error -> " . $e->getMessage());
+    }
+
+    $sql2 = "SELECT id FROM cookie_table WHERE value=?";
+    $stmt2 = $conn->prepare($sql2);
+    $stmt2->bind_param("s", $_COOKIE['phpuserid']);
+    $stmt2->execute();
+    $result2 = $stmt2->get_result();
+    $row2 = $result2->fetch_assoc();
+
+    $uid = $row2['id'];
         
-        $sql2 = "SELECT id FROM cookie_table WHERE value=?";
-        $stmt2 = $conn->prepare($sql2);
-        $stmt2->bind_param("s",$_COOKIE['phpuserid']);
-        $stmt2->execute();
-        $result2 = $stmt2->get_result();
-        $row2 = $result->fetch_assoc();
-        
-        $uid = $row2['id'];
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: *");
+    header('Content-Type');
+    
 
+    if ($_POST['task'] == "book" && isset($_POST['id'])) {
+        $sql = "UPDATE city SET booked=?, booked_user=?, booked_period=? WHERE car_id=? AND iscab=1 AND booked_user=0";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iisi", $booked, $uid, $booked_period, $_POST['id']);
 
-        if(($_POST['task']=="book")&&(isset($_POST['id']))){
-            $sql="UPDATE city SET booked=?,booked_user=?,booked_period=? WHERE car_id=? AND iscab=1 AND booked_user";
-            $stmt2 = $conn->prepare($sql2);
-            $stmt2->bind_param("ssss",'1',$uid,time(),$_POST['id']);
-            $res = $stmt2->execute();
-            if($res){
-                return "success";
-            }
-            else{
-                return "failed";
-            }
-                        
+        // Set the values for $booked and $booked_period based on your logic
+        $booked = 1; // Assuming 1 means booked, adjust as needed
+        $booked_period = time(); // Use the current time for booked_period
+
+        $res = $stmt->execute();
+
+        if ($res) {
+            echo "success";
+        } else {
+            echo "failed";
         }
-        elseif(($_POST['task']=="unbook")&&(isset($_POST['id']))){
-            $sql="UPDATE city SET booked=?,booked_user=?,booked_period=? WHERE car_id=? AND iscab=1 AND ;";
-            $stmt2 = $conn->prepare($sql2);
-            $stmt2->bind_param("ssss",'1',$uid,time(),$_POST['id']);
-            $res = $stmt2->execute();
-            if($res){
-                return "success";
-            }
-            else{
-                return "failed";
-            }
+    } elseif ($_POST['task'] == "unbook" && isset($_POST['id'])) {
+        $sql = "UPDATE city SET booked=0, booked_user=0, booked_period=null WHERE car_id=? AND iscab=1 AND booked_user=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $_POST['id'], $uid);
+        $res = $stmt->execute();
+    
+        if ($res) {
+            echo "success";
+        } else {
+            echo "failed";
         }
     }
+    
+    // Close database connection
+    $conn->close();
+    exit; // Stop further execution
+}
 ?>
+

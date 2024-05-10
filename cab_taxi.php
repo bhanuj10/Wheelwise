@@ -54,19 +54,24 @@
 
     </style>
     <script>
-        function book(a) {
+       function book(a) {
             var formData = new FormData();
-            formData.append('task','unbook');
+            formData.append('task', 'book'); // Corrected task name for booking
             formData.append('id', a);
 
-            fetch('cab.php', {
+            fetch('includes/cab.php', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.text())
             .then(data => {
-                alert("Car Booked");
-                document.location.href="cab_taxi.php";             
+                if (data.trim() == 'success') {
+                    alert("Car Booked");
+                } else {
+                    alert("Failed to book car");
+                }
+                window.location.reload();
+
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -75,17 +80,21 @@
 
         function unbook(a) {
             var formData = new FormData();
-            formData.append('task','unbook');
+            formData.append('task', 'unbook');
             formData.append('id', a);
             
-            fetch('cab.php', {
+            fetch('includes/cab.php', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.text())
             .then(data => {
-                alert("Car Unbooked");
-                document.location.href="cab_taxi.php";                
+                if (data.trim() == 'success') {
+                    alert("Car Unbooked");
+                } else {
+                    alert("Failed to unbook car");
+                }
+                window.location.reload();
             })
             .catch(error => {
                 console.error('Error:', error);
