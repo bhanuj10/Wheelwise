@@ -40,8 +40,9 @@
             height: 150px;
             object-fit: cover;
             border-radius: 50%;
-            border: 5px solid #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 5px solid lightgrey;
+            padding: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         #profilePicInput {
@@ -87,7 +88,7 @@
                         <div class="col-md-5">
                             <div class="form-group" id="profilePicContainer">
                                 <label for="profilePic">Profile Picture</label>
-                                <img id="profilePic" src="teams_page/Bhan.jpg" alt="Profile Picture">
+                                <img id="profilePic" src="placeholder.jpg" alt="Profile Picture">
                                 <input type="file" class="form-control-file" id="profilePicInput" accept="image/*" onchange="displayProfilePic(event)" disabled>
                             </div>
                         </div>

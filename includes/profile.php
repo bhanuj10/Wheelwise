@@ -55,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 <textarea class="form-control" id="address" rows="3" placeholder="Change address" disabled>'.$row["address"].'</textarea>
             </div>
             
+            <!--
             <div class="form-group">
                 <label for="accountType">Account Type</label><br>
                 <div class="form-check form-check-inline">
@@ -66,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     <label class="form-check-label" for="premiumAccount">Premium 👑</label>
                 </div>
             </div>
+            -->
 
         </div>';
 }

@@ -1,5 +1,4 @@
 
-
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $server = "localhost";
@@ -35,11 +34,16 @@
                         <span class='col coltext'>".$booked."</span>
                         <span class='col coltext'>".$iscab."</span>
                         <span class='col coltext' style='color:green;'>COST : ".$row['cost']."</span>";
-                if(!($row['booked'])){
-                    echo "<span class='col coltext btn' onclick='".'alert("Car Booked")'."'><h4>Click to Book</h4></span>";
+                if($row['booked_user']){
+                    if($row['booked_user']==$row2['id']){
+                        echo "<span class='col coltext btn' id='unbook' value=".$row['car_id']." onclick='".''."'><h4 style='width:180px;'>You Booked</h4></span>";
+                    }
+                    else{
+                        echo "<span class='col coltext btn' onclick='".'alert("Car unavailable right now")'."'><h4 style='width:180px;'>Car Unavailable</h4></span>";
+                    }
                 }
                 else{
-                    echo "<span class='col coltext btn' onclick='".'alert("Car Unavailable right now")'."'><h4>Sorry already booked</h4></span>";
+                    echo "<span class='col coltext btn' onclick='".'alert("Car Booked")'."'><h4>Book it now </h4></span>";
                 }
                 echo"             
                     </div><br>";
