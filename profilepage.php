@@ -88,7 +88,8 @@
                         <div class="col-md-5">
                             <div class="form-group" id="profilePicContainer">
                                 <label for="profilePic">Profile Picture</label>
-                                <img id="profilePic" src="placeholder.jpg" alt="Profile Picture">
+                                <?php include 'includes/profile_img.php'; ?>
+                            
                                 <input type="file" class="form-control-file" id="profilePicInput" accept="image/*" onchange="displayProfilePic(event)" disabled>
                             </div>
                         </div>
