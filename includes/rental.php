@@ -1,4 +1,3 @@
-
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $server = "localhost";
@@ -19,6 +18,16 @@
                
         $stmt->execute();
         $result = $stmt->get_result();
+        $row1 = $result->fetch_assoc();
+        
+        $sql2 = "SELECT id FROM cookie_table WHERE value=?";
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->bind_param("s",$_COOKIE['phpuserid']);
+        $stmt2->execute();
+        $result2 = $stmt2->get_result();
+        $row2 = $result2->fetch_assoc();
+
+        
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -26,24 +35,26 @@
                 if (!$row['booked']){
                     $booked="Not Booked Yet";
                 }
-                $iscab = "Only Rental";
+                $iscab = "CAB";
+
                 echo "<div class='car row' style='background-color: lightgrey;align-items: center;'>
                         <span class='col image' style='padding: 15px;text-align:center;'><img src='images/".$row['car_image'].".jpg' alt='pic' style='max-width:250px;max-height:180px;' /></span>
                         <span class='col coltext'>".$row['car_model']."</span>
                         <span class='col coltext'>".$row['car_no']."</span>
                         <span class='col coltext'>".$booked."</span>
                         <span class='col coltext'>".$iscab."</span>
+                        
                         <span class='col coltext' style='color:green;'>COST : ".$row['cost']."</span>";
                 if($row['booked_user']){
                     if($row['booked_user']==$row2['id']){
-                        echo "<span class='col coltext btn' id='unbook' value=".$row['car_id']." onclick='".''."'><h4 style='width:180px;'>You Booked</h4></span>";
+                        echo "<span class='col coltext btn' id='unbook' value=".$row['car_id']." onclick='".'unbook('.$row['car_id'].")"."'><h4 style='width:180px;'>You Booked</h4></span>";
                     }
                     else{
                         echo "<span class='col coltext btn' onclick='".'alert("Car unavailable right now")'."'><h4 style='width:180px;'>Car Unavailable</h4></span>";
                     }
                 }
                 else{
-                    echo "<span class='col coltext btn' onclick='".'alert("Car Booked")'."'><h4>Book it now </h4></span>";
+                    echo "<span class='col coltext btn book' onclick='".'book('.$row['car_id'].")"."'><h4>Book it now </h4></span>";
                 }
                 echo"             
                     </div><br>";
@@ -58,11 +69,11 @@
         } else {
             echo "No cars available :(";
         }
-
+        
         $stmt->close();
         $conn->close();
         exit();
-    } 
+    }
 ?>
 
 <?php

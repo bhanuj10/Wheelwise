@@ -59,7 +59,7 @@
             formData.append('task', 'book'); // Corrected task name for booking
             formData.append('id', a);
 
-            fetch('includes/cab.php', {
+            fetch('includes/rental.php', {
                 method: 'POST',
                 body: formData
             })
@@ -83,7 +83,7 @@
             formData.append('task', 'unbook');
             formData.append('id', a);
             
-            fetch('includes/cab.php', {
+            fetch('includes/rental.php', {
                 method: 'POST',
                 body: formData
             })
