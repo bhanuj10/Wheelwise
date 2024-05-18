@@ -1,6 +1,6 @@
 # WheelWise 🚗
 
-> Your ultimate car rental companion
+> Your ultimate car rental and cab companion
 
 WheelWise is a powerful and user-friendly car rental website built with PHP. It provides a seamless experience for users to browse, reserve, and rent vehicles from a wide selection of cars, SUVs, and luxury vehicles.
 
@@ -22,17 +22,14 @@ WheelWise is a powerful and user-friendly car rental website built with PHP. It 
 - PHP
 - MySQL
 - Bootstrap
-- jQuery
-- Google Maps API
 
 ## 🚦 Getting Started
 
 To run WheelWise locally, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/bhanuj10/Wheelwise.git`
-2. Install dependencies: `composer install`
-3. Set up the database and update the configuration file
-4. Start the development server: `php -S localhost:8000`
+2. Host it
+
 
 ## 🤝 Contributing
 
