@@ -10,6 +10,64 @@
             die("Connection error: " . $conn->connect_error);
         }
 
+        $newfileName = NULL;        
+        if(isset($_FILES['profile_picture'])){
+            $file = $_FILES['profile_picture'];
+            $tmpname = md5(str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT).time()).$_POST['username'];
+            $fileName = $file['name'];
+            $newfileName = preg_replace("/[^a-zA-Z0-9.]/", "", $tmpname.$file['name']);
+            $fileTmpName = $file['tmp_name'];
+            $fileSize = $file['size'];
+            $fileError = $file['error'];
+            $fileType = $file['type'];
+        
+            // Allowed file extensions
+            $allowed = ['jpg', 'jpeg', 'png'];
+            // Max and min size
+            $maxSize = 5 * 1024 * 1024; // 5MB
+            $minSize = 5 * 1024; // 5KB
+            print_r($file);
+            // Extract file extension
+            $fileNameParts = explode('.', $fileName);
+            $fileExt = strtolower(end($fileNameParts));
+        
+            // Check if the file is an image
+            if (in_array($fileExt, $allowed)) {
+                // Check for errors and size limits
+                if ($fileError === 0) {
+                    if ($fileSize >= $minSize && $fileSize <= $maxSize) {
+                        // File is valid
+                        // Your code to handle successful upload (e.g., move the file, save to database, etc.)
+                        
+                        $fileDestination = 'profile_img/' . $newfileName;
+                        move_uploaded_file($fileTmpName, $fileDestination);
+                        
+                    } else {
+    
+                        echo "<script>alert('File size must be between 5KB and 5MB.');
+                                setTimeout(function() {
+                                    window.location.href = 'register.php';
+                                }, 500);
+                            </script>";
+                        
+                    }
+                } else {
+    
+                    echo "<script>alert('There was an error uploading your file.');
+                            setTimeout(function() {
+                                window.location.href = 'register.php';
+                            }, 500);
+                        </script>";
+                }
+            } else {
+                echo "<script>alert('You cannot upload files of this type. Only JPG, JPEG, and PNG are allowed.');
+                            setTimeout(function() {
+                                window.location.href = 'register.php';
+                            }, 500);
+                        </script>";
+            }
+        }
+
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $username = $_POST['username'];
@@ -17,6 +75,7 @@
         $phone = $_POST['phone'];
         $email = $_POST['email'];
         $address = $_POST['address'];
+        $user_img = $newfileName;
 
         $sql_check = "SELECT * FROM users WHERE user=? OR email=?";
         $stmt_check = $conn->prepare($sql_check);
@@ -37,18 +96,18 @@
 
         $stmt_check->close();
 
-        $sql_insert = "INSERT INTO users(fn, ln, user, pass, phone, email, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql_insert = "INSERT INTO users(fn, ln, user, pass, phone, email, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt_insert = $conn->prepare($sql_insert);
-        $stmt_insert->bind_param("sssssss", $firstname, $lastname, $username, $password, $phone, $email, $address);
+        $stmt_insert->bind_param("ssssssss", $firstname, $lastname, $username, $password, $phone, $email, $address, $user_img);
         $result_insert = $stmt_insert->execute();
         $stmt_insert->close();
         $conn->close();
 
         if ($result_insert) {
-            echo "<script>alert('Registered successfully.  Redirecting...')
-                setTimeout(function() {
-                    window.location.href = 'signin.php';
-                }, 500); 
+            echo "<script>alert('Registered successfully.  Redirecting...');
+                    setTimeout(function() {
+                        window.location.href = 'signin.php';
+                    }, 500);
               </script>";
         } else {
             echo "<script>alert('Invalid request...')
@@ -114,7 +173,7 @@
                 <div class="form-group">
                     <label for="imageUpload">Profile Picture</label>
                     <input type="file" class="form-control-file" id="imageUpload" name="profile_picture" accept=".jpg, .jpeg, .png">
-                    <small id="fileHelp" class="form-text text-muted">Max file size: 2MB</small>
+                    <small id="fileHelp" class="form-text text-muted">Min file size: 5KB ..... Max file size:  5MB</small>
                 
                 </div>
                 <div class="form-group">
