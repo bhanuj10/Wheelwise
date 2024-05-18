@@ -26,7 +26,7 @@
             // Max and min size
             $maxSize = 5 * 1024 * 1024; // 5MB
             $minSize = 5 * 1024; // 5KB
-            print_r($file);
+            //print_r($file);
             // Extract file extension
             $fileNameParts = explode('.', $fileName);
             $fileExt = strtolower(end($fileNameParts));
@@ -96,7 +96,7 @@
 
         $stmt_check->close();
 
-        $sql_insert = "INSERT INTO users(fn, ln, user, pass, phone, email, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql_insert = "INSERT INTO users(fn, ln, user, pass, phone, email, address, user_img) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt_insert = $conn->prepare($sql_insert);
         $stmt_insert->bind_param("ssssssss", $firstname, $lastname, $username, $password, $phone, $email, $address, $user_img);
         $result_insert = $stmt_insert->execute();

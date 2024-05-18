@@ -1,5 +1,13 @@
 
-
+<?php
+    ob_start(); // Start output buffering
+    // Your PHP code here
+    if (($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET") && !isset($_COOKIE['phpuserid'])) {
+        header("Location: index.php");
+        exit;
+    }
+    ob_end_flush(); // Flush output
+?>
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $server = "localhost";
