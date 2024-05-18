@@ -81,7 +81,7 @@
     <div class="container main">
         <div class="card">
             <h1>Register</h1>
-            <form action="register.php" method="POST">
+            <form action="register.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="firstname">First Name</label>
                     <input type="text" id="firstname" name="firstname" minlength="4" maxlength="25" placeholder="Enter your first name" required>
@@ -110,7 +110,12 @@
                 
                     <label for="address">Address</label>
                     <textarea id="address" name="address" placeholder="Enter your address" minlength="10" maxlength="120" required></textarea>
-                
+                </div>
+                <div class="form-group">
+                    <label for="imageUpload">Profile Picture</label>
+                    <input type="file" class="form-control-file" id="imageUpload" name="profile_picture" accept=".jpg, .jpeg, .png">
+                    <small id="fileHelp" class="form-text text-muted">Max file size: 2MB</small>
+            </div>
                 </div>
                 <div class="form-group">
                     <button type="submit">Register</button>
