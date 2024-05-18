@@ -5,7 +5,7 @@
 WheelWise is a powerful and user-friendly car rental website built with PHP. It provides a seamless experience for users to browse, reserve, and rent vehicles from a wide selection of cars, SUVs, and luxury vehicles.
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/bhanuj10/Wheelwise/main/screenshots/home.png" alt="WheelWise Homepage" width="800">
+  <img src="https://raw.githubusercontent.com/bhanuj10/Wheelwise/screenshots/home.jpeg" alt="WheelWise Homepage" width="800">
 </div>
 
 ## 🚀 Features
