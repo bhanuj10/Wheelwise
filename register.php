@@ -46,7 +46,7 @@
     
                         echo "<script>alert('File size must be between 5KB and 5MB.');
                                 setTimeout(function() {
-                                    window.location.href = 'register.php';
+                                    window.location.href = 'signin.php';
                                 }, 500);
                             </script>";
                         
@@ -55,14 +55,14 @@
     
                     echo "<script>alert('There was an error uploading your file.');
                             setTimeout(function() {
-                                window.location.href = 'register.php';
+                                window.location.href = 'signin.php';
                             }, 500);
                         </script>";
                 }
             } else {
                 echo "<script>alert('You cannot upload files of this type. Only JPG, JPEG, and PNG are allowed.');
                             setTimeout(function() {
-                                window.location.href = 'register.php';
+                                window.location.href = 'signin.php';
                             }, 500);
                         </script>";
             }
