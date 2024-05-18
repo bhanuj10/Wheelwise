@@ -9,9 +9,8 @@
         if ($conn->connect_error) {
             die("Connection error: " . $conn->connect_error);
         }
-
-        $newfileName = NULL;        
-        if(isset($_FILES['profile_picture'])){
+        $newfileName=NULL;
+        if(isset($_FILES['profile_picture']['name'])){
             $file = $_FILES['profile_picture'];
             $tmpname = md5(str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT).time()).$_POST['username'];
             $fileName = $file['name'];
