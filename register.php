@@ -115,7 +115,7 @@
                     <label for="imageUpload">Profile Picture</label>
                     <input type="file" class="form-control-file" id="imageUpload" name="profile_picture" accept=".jpg, .jpeg, .png">
                     <small id="fileHelp" class="form-text text-muted">Max file size: 2MB</small>
-            </div>
+                
                 </div>
                 <div class="form-group">
                     <button type="submit">Register</button>
