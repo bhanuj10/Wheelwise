@@ -1,3 +1,3 @@
 <html>
-    this is me darks but still see white
+    this is me darks but still sees white
 </html>
