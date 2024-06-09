@@ -37,9 +37,17 @@
 
             $value = base64_encode($v1 . $v2 . $v3);
 
-            $sql_insert = "INSERT INTO cookie_table VALUES(?,?,?)";
+            $uid = $result->fetch_assoc()['id'];
+
+            $sql_del = "DELETE FROM cookie_table WHERE id=?";
+            $stmt_del = $conn->prepare($sql_del);
+            $stmt_del->bind_param("i",$uid);
+            $stmt_del->execute();
+
+
+            $sql_insert = "INSERT INTO cookie_table VALUES(?,?,now())";
             $stmt_insert = $conn->prepare($sql_insert);
-            $stmt_insert->bind_param("ssi",$result->fetch_assoc()['id'],$value,$v3);
+            $stmt_insert->bind_param("is",$uid,$value);
             $result_insert = $stmt_insert->execute();
 
             setcookie("phpuserid", $value, $v3 + 86000, '/');

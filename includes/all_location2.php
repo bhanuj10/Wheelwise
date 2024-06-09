@@ -62,7 +62,8 @@
                         <span class='col coltext'>".$row['car_no']."</span>
                         <span class='col coltext'>".$booked."</span>
                         <span class='col coltext'>".$iscab."</span>
-                        <span class='col coltext'>COST : ".$row['cost']."</span>                
+                        <span class='col coltext' >COST : 
+                        <span style='color:green;'>".$row['cost']."</span></span>               
                     </div><br>";
                 /*echo "<div class='card'>
                 <span>".$row['car_model']."</span>

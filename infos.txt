@@ -1,0 +1,81 @@
+database: cars 
+tables : users,city
+
+pages : index,signin,register,teams,location,profile,help
+
+index.php -> signin , teams, cookie -> stores cookie with date
+signin -> register
+
+users -> fn,ln,user,pass,id,premium,phone,email,address,timestamp
+-> all varchar2 except id(auto increment constraint)
+
+city -> car_id,car_no,iscab,booked,driver_phone,cost,booked_period,timestamp
+//first check city are available in data then the cars
+
+
+PHP_SESSION_DISABLED: Sessions are disabled.
+PHP_SESSION_NONE: Sessions are enabled but not started.
+PHP_SESSION_ACTIVE: Sessions are enabled and started.
+
+<?php
+// Start or resume the session
+session_start();
+session_destroy();
+// Check the session status
+$sessionStatus = session_status();
+
+if ($sessionStatus == PHP_SESSION_ACTIVE) {
+    echo "Session is active.";
+} else {
+    echo "Session is not active.";
+}
+?>
+
+if session is not active expire cookie
+
+if session is active 
+	if cookie is not set, end session
+	if cookie is set, check expire
+
+to logout, end session,expire cookie
+
+
+
+
+CREATE TABLE `cars`.`users` (`fn` VARCHAR(30) NOT NULL , `ln` INT(16) NOT NULL , `user` VARCHAR(16) NOT NULL , `pass` INT NOT NULL , `id` INT NOT NULL AUTO_INCREMENT , `premium` BOOLEAN NOT NULL , `phone` BIGINT(10) NOT NULL , `email` VARCHAR(30) NOT NULL , `address` VARCHAR(30) NOT NULL , `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `last_update` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+CREATE TABLE `cars`.`cookie_table` (`id` INT(10) NOT NULL AUTO_INCREMENT , `value` VARCHAR(100) NOT NULL , `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+CREATE TABLE `cars`.`city` (`car_id` INT(5) NOT NULL AUTO_INCREMENT , `car_no` VARCHAR(10) NOT NULL , `is_cab` BOOLEAN NOT NULL DEFAULT FALSE , `booked` BOOLEAN NOT NULL DEFAULT FALSE , `driver_phone` BIGINT(10) NULL DEFAULT NULL , `cost` INT(10) NOT NULL , `booked_period` TIMESTAMP NULL DEFAULT NULL , `car_image` VARCHAR(150) NOT NULL , `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `booked_user` INT(10) NULL DEFAULT NULL , PRIMARY KEY (`car_id`)) ENGINE = InnoDB;
+
+
+ALTER TABLE `city` ADD `car_model` VARCHAR(30) NOT NULL AFTER `car_no`;
+
+ALTER TABLE `users` CHANGE `ln` `ln` VARCHAR(16) NOT NULL;
+
+ALTER TABLE `users` CHANGE `pass` `pass` VARCHAR(16) NOT NULL;
+
+ALTER TABLE `users` CHANGE `premium` `premium` BOOLEAN NOT NULL DEFAULT FALSE;
+
+ALTER TABLE `users` CHANGE `address` `address` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+ALTER TABLE `users` CHANGE `ln` `ln` VARCHAR(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+ALTER TABLE `users` ADD `user_img` VARCHAR(150) NULL AFTER `id`;
+
+ALTER TABLE `city` ADD `place` VARCHAR(2) NOT NULL AFTER `car_model`;
+
+ALTER TABLE `city` CHANGE `is_cab` `iscab` TINYINT(1) NOT NULL DEFAULT '0';
+
+CREATE TABLE `cars`.`feedback` (`name` VARCHAR(30) NULL , `email` VARCHAR(30) NOT NULL , `subject` VARCHAR(150) NOT NULL , `message` TEXT NOT NULL ) ENGINE = InnoDB;
+
+ALTER TABLE `feedback` ADD `id` INT(5) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+
+
+
+
+
+
+Need to implement sessions

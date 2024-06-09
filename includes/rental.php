@@ -46,12 +46,12 @@
                 $iscab = "RENTAL";
 
                 echo "<div class='car row' style='background-color: lightgrey;align-items: center;'>
-                        <span class='col image' style='padding: 15px;text-align:center;'><img src='images/".$row['car_image']."' alt='pic' style='max-width:250px;max-height:180px;' loading='lazy'  /></span>
+                        <span class='col image' style='padding: 15px;text-align:center;'><img src='images/".$row['car_image']."' alt='pic' style='max-width:250px;max-height:180px;display:block;margin:10px' loading='lazy'  /></span>
                         <span class='col coltext'>".$row['car_model']."</span>
                         <span class='col coltext'>".$row['car_no']."</span>
                         <span class='col coltext'>".$booked."</span>
                         <span class='col coltext'>".$iscab."</span>
-                        <span class='col coltext' >COST : 
+                        <span class='col coltext' >COST :
                         <span style='color:green;'>".$row['cost']."</span></span>";
                 if($row['booked_user']){
                     if($row['booked_user']==$row2['id']){
