@@ -48,13 +48,14 @@
                 $iscab = "CAB";
 
                 echo "<div class='car row' style='background-color: lightgrey;align-items: center;'>
-                        <span class='col image' style='padding: 15px;text-align:center;'><img src='images/".$row['car_image'].".jpg' alt='pic' style='max-width:250px;max-height:180px;' /></span>
+                        <span class='col image' style='padding: 15px;text-align:center;'><img src='images/".$row['car_image']."' alt='pic' style='max-width:250px;max-height:180px;' /></span>
                         <span class='col coltext'>".$row['car_model']."</span>
                         <span class='col coltext'>".$row['car_no']."</span>
                         <span class='col coltext'>".$booked."</span>
                         <span class='col coltext'>".$iscab."</span>
                         <span class='col coltext'>".$row['driver_phone']."</span>
-                        <span class='col coltext' style='color:green;'>COST : ".$row['cost']."</span>";
+                        <span class='col coltext' >COST : 
+                        <span style='color:green;'>".$row['cost']."</span></span>";
                 if($row['booked_user']){
                     if($row['booked_user']==$row2['id']){
                         echo "<span class='col coltext btn' id='unbook' value=".$row['car_id']." onclick='".'unbook('.$row['car_id'].")"."'><h4 style='width:180px;'>You Booked</h4></span>";

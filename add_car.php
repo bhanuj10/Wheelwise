@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Car</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #driver_phone_group {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -19,17 +24,28 @@
                 <input type="text" class="form-control" id="car_model" name="car_model" required maxlength="30">
             </div>
             <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="is_cab" name="is_cab">
+                <input type="checkbox" class="form-check-input" id="is_cab" name="is_cab" onchange="toggleDriverPhone()">
                 <label class="form-check-label" for="is_cab">Is Cab</label>
+            </div>
+            <div class="form-group" id="driver_phone_group">
+                <label for="driver_phone">Driver Phone:</label>
+                <input type="text" class="form-control" id="driver_phone" name="driver_phone" pattern="\d{10}" title="Please enter a valid 10-digit phone number">
             </div>
             <div class="form-group">
                 <label for="cost">Cost:</label>
                 <input type="number" class="form-control" id="cost" name="cost" required min="0" max="9999999999">
             </div>
             <div class="form-group">
-                <label for="driver_phone">Driver Phone:</label>
-                <input type="text" class="form-control" id="driver_phone" name="driver_phone" pattern="\d{10}" title="Please enter a valid 10-digit phone number">
+                <label for="place">Place:</label>
+                <select class="form-control" id="place" name="place" required>
+                    <option value="">Select Place</option>
+                    <option value="PY">Puducherry</option>
+                    <option value="VI">Villupuram</option>
+                    <option value="CU">Cuddalore</option>
+                    <option value="KA">Karaikal</option>
+                </select>
             </div>
+
             <div class="form-group">
                 <label for="car_image">Car Image:</label>
                 <input type="file" class="form-control-file" id="car_image" name="car_image" required accept="image/*">
@@ -41,6 +57,17 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleDriverPhone() {
+            var isCabChecked = document.getElementById('is_cab').checked;
+            var driverPhoneGroup = document.getElementById('driver_phone_group');
+            if (isCabChecked) {
+                driverPhoneGroup.style.display = 'block';
+            } else {
+                driverPhoneGroup.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
 
@@ -64,6 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $is_cab = isset($_POST['is_cab']) ? 1 : 0;
     $cost = $_POST['cost'];
     $driver_phone = $_POST['driver_phone'];
+    $place = $_POST['place'];
 
     // Handle file upload
     $target_dir = "images/";
@@ -79,8 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $sql = "INSERT INTO city (car_no, car_model, is_cab, cost, driver_phone, car_image)
-            VALUES ('$car_no', '$car_model', '$is_cab', '$cost', '$driver_phone', '$car_image')";
+    $sql = "INSERT INTO city (car_no, car_model, iscab, cost, driver_phone, car_image,place)
+            VALUES ('$car_no', '$car_model', '$is_cab', '$cost', '$driver_phone', '$car_image', '$place')";
 
     if ($conn->query($sql) === TRUE) {
         echo "New car added successfully";
