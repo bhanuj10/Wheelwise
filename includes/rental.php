@@ -27,7 +27,7 @@
                
         $stmt->execute();
         $result = $stmt->get_result();
-        $row1 = $result->fetch_assoc();
+        
         
         $sql2 = "SELECT id FROM cookie_table WHERE value=?";
         $stmt2 = $conn->prepare($sql2);
@@ -36,7 +36,6 @@
         $result2 = $stmt2->get_result();
         $row2 = $result2->fetch_assoc();
 
-        
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -113,9 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
 
     if ($_POST['task'] == "book" && isset($_POST['id'])) {
-        $sql = "UPDATE city SET booked=?, booked_user=?, booked_period=? WHERE car_id=? AND iscab=0 AND booked_user=NULL";
+        $sql = "UPDATE city SET booked=?, booked_user=?, booked_period=now() WHERE car_id=? AND iscab=0 AND booked_user=0";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("iisi", $booked, $uid, $booked_period, $_POST['id']);
+        $stmt->bind_param("iii", $booked, $uid, $_POST['id']);
 
         // Set the values for $booked and $booked_period based on your logic
         $booked = 1; // Assuming 1 means booked, adjust as needed
@@ -129,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "failed";
         }
     } elseif ($_POST['task'] == "unbook" && isset($_POST['id'])) {
-        $sql = "UPDATE city SET booked=0, booked_user=NULL, booked_period=null WHERE car_id=? AND iscab=0 AND booked_user=?";
+        $sql = "UPDATE city SET booked=0, booked_user=0, booked_period=NULL WHERE car_id=? AND iscab=0 AND booked_user=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ss", $_POST['id'], $uid);
         $res = $stmt->execute();
