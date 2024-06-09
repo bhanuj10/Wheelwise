@@ -44,7 +44,7 @@
                 if (!$row['booked']){
                     $booked="Not Booked Yet";
                 }
-                $iscab = "CAB";
+                $iscab = "RENTAL";
 
                 echo "<div class='car row' style='background-color: lightgrey;align-items: center;'>
                         <span class='col image' style='padding: 15px;text-align:center;'><img src='images/".$row['car_image']."' alt='pic' style='max-width:250px;max-height:180px;' /></span>
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
 
     if ($_POST['task'] == "book" && isset($_POST['id'])) {
-        $sql = "UPDATE city SET booked=?, booked_user=?, booked_period=? WHERE car_id=? AND iscab=0 AND booked_user=0";
+        $sql = "UPDATE city SET booked=?, booked_user=?, booked_period=? WHERE car_id=? AND iscab=0 AND booked_user=NULL";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iisi", $booked, $uid, $booked_period, $_POST['id']);
 
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "failed";
         }
     } elseif ($_POST['task'] == "unbook" && isset($_POST['id'])) {
-        $sql = "UPDATE city SET booked=0, booked_user=0, booked_period=null WHERE car_id=? AND iscab=0 AND booked_user=?";
+        $sql = "UPDATE city SET booked=0, booked_user=NULL, booked_period=null WHERE car_id=? AND iscab=0 AND booked_user=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ss", $_POST['id'], $uid);
         $res = $stmt->execute();
